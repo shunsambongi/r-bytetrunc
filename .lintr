@@ -1,0 +1,4 @@
+exclusions: list(
+    "R/extendr-wrappers.R"
+  )
+
