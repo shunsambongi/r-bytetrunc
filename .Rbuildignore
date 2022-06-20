@@ -1,4 +1,3 @@
 ^README\.Rmd$
 ^\.github$
 ^\.lintr$
-^rust-toolchain\.toml$
