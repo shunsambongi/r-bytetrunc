@@ -11,5 +11,6 @@
 byte_trunc <- function(string, size) {
   not_na <- !is.na(string)
   string[not_na] <- byte_trunc_(string[not_na], size)
+  Encoding(string) <- "UTF-8"
   string
 }
