@@ -10,7 +10,8 @@
 #' byte_trunc(y, 10)
 byte_trunc <- function(string, size) {
   not_na <- !is.na(string)
-  string[not_na] <- byte_trunc_(string[not_na], size)
+  utf8 <- stringi::stri_conv(string[not_na], to = "UTF-8")
+  string[not_na] <- byte_trunc_(utf8, size)
   Encoding(string) <- "UTF-8"
   string
 }
