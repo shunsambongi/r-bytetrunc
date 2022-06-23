@@ -7,8 +7,6 @@ Description: Truncate text by a maximum bytesize rather than by character
     count.
 License: file LICENSE
 URL: https://shunsambongi.github.io/r-bytetrunc/
-Imports:
-    stringi
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
