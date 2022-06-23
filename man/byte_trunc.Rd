@@ -4,12 +4,14 @@
 \alias{byte_trunc}
 \title{Truncate a character string by bytesize.}
 \usage{
-byte_trunc(string, size)
+byte_trunc(string, size, ellipsis = "...")
 }
 \arguments{
 \item{string}{A character vector.}
 
 \item{size}{Maximum bytesize of string.}
+
+\item{ellipsis}{Content of ellipsis that indicates content has been removed.}
 }
 \description{
 Truncate a character string by bytesize.

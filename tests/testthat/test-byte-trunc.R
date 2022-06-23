@@ -5,7 +5,7 @@ test_n_byte <- function(n, input) {
   )
 
   bytesize <- 3L * n
-  truncated <- byte_trunc(input, bytesize)
+  truncated <- byte_trunc(input, bytesize, ellipsis = "")
 
   testthat::expect_lte(nchar(truncated, type = "bytes"), bytesize)
   testthat::expect_equal(truncated, substr(input, 1L, 3L))
@@ -37,7 +37,7 @@ test_that("NA is ignored", {
 test_that("latin1 encoding works", {
   input <- "\xc0\xc1\xc2\xc3\xc4"
   Encoding(input) <- "latin1"
-  expect_equal(byte_trunc(input, 2L), "\u00c0")
+  expect_equal(byte_trunc(input, 2L, ellipsis = ""), "\u00c0")
 })
 
 test_that("vectors work", {
@@ -50,7 +50,7 @@ test_that("vectors work", {
   )
 
   bytesize <- 6L
-  truncated <- byte_trunc(input, bytesize)
+  truncated <- byte_trunc(input, bytesize, ellipsis = "")
 
   expect_length(truncated, length(input))
   expect_true(all(nchar(truncated, type = "bytes") <= bytesize, na.rm = TRUE))
@@ -64,4 +64,13 @@ test_that("vectors work", {
       NA_character_
     )
   )
+})
+
+test_that("ellipsis works", {
+  expect_equal(byte_trunc("ABCDEF", 6L), "ABCDEF")
+  expect_equal(byte_trunc("ABCDEFG", 6L), "ABC...")
+  expect_equal(byte_trunc("ABCDEFG", 6L, ellipsis = ".."), "ABCD..")
+  expect_equal(byte_trunc("ABCDEFG", 6L, ellipsis = "...."), "AB....")
+  expect_equal(byte_trunc("ABCDEFG", 6L, ellipsis = "......"), "......")
+  expect_error(byte_trunc("ABCDEFG", 6L, ellipsis = "......."))
 })
