@@ -1,4 +1,8 @@
 *.o
 *.so
 *.dll
-target
+rust/target/**/*
+!rust/target/
+!rust/target/x86_64-pc-windows-gnu/
+!rust/target/x86_64-pc-windows-gnu/release/
+!rust/target/x86_64-pc-windows-gnu/release/libbytetrunc.a
